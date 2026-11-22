@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZENVORA HT — Platfòm Aprantisaj & Aktivite Dijital</title>
+  <style>
+    :root {
+      --royal-blue: #163a8a;
+      --navy-blue: #0b193c;
+      --gold: #eab308;
+      --gold-light: #fef08a;
+      --bg-light: #f4f6fb;
+      --card-bg: #ffffff;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --success: #15803d;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding-bottom: 84px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--navy-blue), var(--royal-blue));
+      color: #fff;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 4px 12px rgba(11, 25, 60, 0.2);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--gold);
+      color: var(--navy-blue);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--gold-light);
+    }
+
+    .balance-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(234, 179, 8, 0.5);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      white-space: nowrap;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .card h2 {
+      font-size: 1.05rem;
+      color: var(--navy-blue);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: #fef9c3;
+      color: #854d0e;
+      border: 1px solid #fde047;
+    }
+
+    .badge.verified {
+      background: #dcfce7;
+      color: var(--success);
+      border-color: #86efac;
+    }
+
+    /* Buttons & Inputs */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.99);
+    }
+
+    .btn-primary {
+      background: var(--royal-blue);
+      color: #fff;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy-blue);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--royal-blue);
+      border: 1.5px solid var(--royal-blue);
+    }
+
+    .btn-sm {
+      width: auto;
+      padding: 7px 12px;
+      font-size: 0.82rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text-dark);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+
+    .task-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .task-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .toast {
+      position: fixed;
+      top: 78px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy-blue);
+      color: #fff;
+      border-left: 4px solid var(--gold);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      z-index: 50;
+      display: none;
+      max-width: 90%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Bottom Navigation */
+    nav.bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      z-index: 30;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      padding: 9px 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .nav-btn.active {
+      color: var(--royal-blue);
+      background: #eff6ff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <div class="brand">
+        <div class="brand-badge">Z</div>
+        <div>
+          <div class="brand-title">ZENVORA HT</div>
+          <div class="brand-sub">Aprantisaj & Aktivite Dijital</div>
+        </div>
+      </div>
+      <div class="balance-pill" id="balanceDisplay">Balans: 0 HTG</div>
+    </div>
+  </header>
+
+  <div class="toast" id="toastBox"></div>
+
+  <main>
+    <!-- SEKsyon 1: Akèy & VIP -->
+    <section id="sec-home" class="section active">
+      <div class="card">
+        <h2>
+          <span>Byenveni sou ZENVORA HT</span>
+          <span class="badge" id="statusBadge">An atant verifikasyon</span>
+        </h2>
+        <p>
+          Swiv videyo kout ak long chak jou, reponn kesyon kilti jeneral, kilti ayisyèn ak foutbòl, epi jere manb VIP ou ak kòd parennaj ou.
+        </p>
+        <div class="grid-2">
+          <button class="btn btn-gold" onclick="switchTab('sec-tasks')">Kòmanse Aktivite</button>
+          <button class="btn btn-outline" onclick="switchTab('sec-vip')">VIP & MonCash</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Kòd Parennaj Ou</h2>
+        <p>Pataje kòd ou a ak zanmi w lè yo kreye kont yo sou platfòm lan.</p>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <input type="text" id="referralCodeInput" value="ZENVORA-HT-21" readonly style="margin-bottom:0; font-weight:700;" />
+          <button class="btn btn-primary btn-sm" onclick="copyReferral()">Kopye</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKsyon 2: Videyo Chak Jou -->
+    <section id="sec-tasks" class="section">
+      <div class="card">
+        <h2>Videyo Kout & Long Chak Jou</h2>
+        <p>Gade chak videyo jiska lafen pou valide aktivite w la.</p>
+
+        <div class="task-item">
+          <div>
+            <strong>Videyo Kout #1 — Edikasyon Dijital</strong>
+            <div class="task-meta">Dire: ~1 minit • Rekonpans: +25 HTG</div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="completeTask(25, 'Videyo Kout #1')">Validé</button>
+        </div>
+
+        <div class="task-item">
+          <div>
+            <strong>Videyo Long #1 — Antreprenarya & Teknoloji</strong>
+            <div class="task-meta">Dire: ~5 minit • Rekonpans: +75 HTG</div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="completeTask(75, 'Videyo Long #1')">Validé</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKsyon 3: Quiz -->
+    <section id="sec-quiz" class="section">
+      <div class="card">
+        <h2>Quiz: Kilti Jeneral, Kilti & Foutbòl</h2>
+        <p id="quizQuestion">Kesyon: Ki kote premye endepandans nwa nan mond lan te fèt an 1804?</p>
+        <div id="quizOptions">
+          <button class="btn btn-outline" style="margin-bottom:8px;" onclick="answerQuiz(true)">Ayiti</button>
+          <button class="btn btn-outline" style="margin-bottom:8px;" onclick="answerQuiz(false)">Jamayik</button>
+          <button class="btn btn-outline" onclick="answerQuiz(false)">Repiblik Dominikèn</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEKsyon 4: VIP & Peman MonCash / NatCash -->
+    <section id="sec-vip" class="section">
+      <div class="card">
+        <h2>Nivo Manb VIP & Peman</h2>
+        <p>Soumèt referans peman <strong>MonCash</strong> oswa <strong>NatCash</strong> ou pou verifikasyon manyèl admin.</p>
+
+        <form onsubmit="submitPayment(event)">
+          <label for="vipPlan">Chwazi Nivo VIP</label>
+          <select id="vipPlan">
+            <option value="VIP Bronze">VIP Bronze</option>
+            <option value="VIP Silver">VIP Silver</option>
+            <option value="VIP Gold">VIP Gold</option>
+          </select>
+
+          <label for="paymentMethod">Metòd Peman</label>
+          <select id="paymentMethod">
+            <option value="MonCash">MonCash</option>
+            <option value="NatCash">NatCash</option>
+          </select>
+
+          <label for="txRef">Nimewo Telefòn / Referans Tranzaksyon</label>
+          <input type="text" id="txRef" placeholder="Ex: MC-987654321" required />
+
+          <button type="submit" class="btn btn-gold">Voye Demann Verifikasyon</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SEKsyon 5: Administratè Prive -->
+    <section id="sec-admin" class="section">
+      <div class="card">
+        <h2>Pano Administratè Prive</h2>
+        <p>Kontwòl verifikasyon manb ak peman anvan debloke aksè konplè.</p>
+
+        <div id="adminLockBox">
+          <label for="adminPin">Kòd Aksè Admin</label>
+          <input type="password" id="adminPin" placeholder="Antre kòd admin ou" />
+          <button class="btn btn-primary" onclick="unlockAdmin()">Louvri Pano Admin</button>
+        </div>
+
+        <div id="adminPanelContent" style="display:none;">
+          <p><strong>Estati aktyèl itilizatè:</strong> <span id="adminUserState">An atant</span></p>
+          <div class="grid-2">
+            <button class="btn btn-primary btn-sm" onclick="setVerified(true)">Apwouve Kont / VIP</button>
+            <button class="btn btn-outline btn-sm" onclick="setVerified(false)">Mete An Atant</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-target="sec-home" onclick="switchTab('sec-home')">Akèy</button>
+    <button class="nav-btn" data-target="sec-tasks" onclick="switchTab('sec-tasks')">Videyo</button>
+    <button class="nav-btn" data-target="sec-quiz" onclick="switchTab('sec-quiz')">Quiz</button>
+    <button class="nav-btn" data-target="sec-vip" onclick="switchTab('sec-vip')">VIP</button>
+    <button class="nav-btn" data-target="sec-admin" onclick="switchTab('sec-admin')">Admin</button>
+  </nav>
+
+  <script>
+    // Konfigirasyon debaz eta aplikasyon an (ranplase pa Appwrite SDK lè w konekte backend la)
+    const state = {
+      balance: 0,
+      verified: false,
+      adminCode: "ZENVORA2026"
+    };
+
+    function showToast(msg) {
+      const box = document.getElementById("toastBox");
+      box.textContent = msg;
+      box.style.display = "block";
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        box.style.display = "none";
+      }, 3000);
+    }
+
+    function updateUI() {
+      document.getElementById("balanceDisplay").textContent = `Balans: ${state.balance} HTG`;
+      const badge = document.getElementById("statusBadge");
+      const adminState = document.getElementById("adminUserState");
+
+      if (state.verified) {
+        badge.textContent = "Verifye / VIP Aktif";
+        badge.classList.add("verified");
+        adminState.textContent = "Verifye";
+      } else {
+        badge.textContent = "An atant verifikasyon";
+        badge.classList.remove("verified");
+        adminState.textContent = "An atant";
+      }
+    }
+
+    function switchTab(sectionId) {
+      document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(sectionId).classList.add("active");
+
+      document.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.target === sectionId);
+      });
+    }
+
+    function copyReferral() {
+      const input = document.getElementById("referralCodeInput");
+      input.select();
+      navigator.clipboard?.writeText(input.value).catch(() => {});
+      showToast("Kòd parennaj la kopye!");
+    }
+
+    function completeTask(amount, label) {
+      state.balance += amount;
+      updateUI();
+      showToast(`${label} konplete (+${amount} HTG)`);
+    }
+
+    function answerQuiz(isCorrect) {
+      if (isCorrect) {
+        state.balance += 20;
+        updateUI();
+        showToast("Bon repons! Ou resevwa +20 HTG.");
+      } else {
+        showToast("Repons lan pa kòrèk, eseye ankò.");
+      }
+    }
+
+    function submitPayment(e) {
+      e.preventDefault();
+      const plan = document.getElementById("vipPlan").value;
+      const method = document.getElementById("paymentMethod").value;
+      const ref = document.getElementById("txRef").value.trim();
+      showToast(`Demann ${plan} (${method} - ${ref}) anrejistre pou verifikasyon.`);
+      e.target.reset();
+    }
+
+    function unlockAdmin() {
+      const pin = document.getElementById("adminPin").value;
+      if (pin === state.adminCode) {
+        document.getElementById("adminLockBox").style.display = "none";
+        document.getElementById("adminPanelContent").style.display = "block";
+        showToast("Pano administratè a debloke.");
+      } else {
+        showToast("Kòd admin an pa bon.");
+      }
+    }
+
+    function setVerified(val) {
+      state.verified = val;
+      updateUI();
+      showToast(val ? "Itilizatè a make kòm verifye." : "Itilizatè a mete an atant.");
+    }
+
+    updateUI();
+  </script>
+</body>
+</html>
